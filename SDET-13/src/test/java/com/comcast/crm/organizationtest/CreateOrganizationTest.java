@@ -9,6 +9,13 @@ import com.crm.vtiger.pomclass.CreateOrganizationPage;
 import com.crm.vtiger.pomclass.HomePage;
 import com.crm.vtiger.pomclass.OragnizationInformationPage;
 import com.crm.vtiger.pomclass.OrganizationPage;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Step;
+import io.qameta.allure.Story;
 /**
  * 
  * @author Deepak
@@ -16,6 +23,11 @@ import com.crm.vtiger.pomclass.OrganizationPage;
  */
 public class CreateOrganizationTest extends BaseClass{
 
+	@Epic("VT_01 Organization module")
+	@Story("Create a organization with mandatory fileds")
+	@Severity(SeverityLevel.CRITICAL)
+	@Description("create a organization with madatory fields and verify the organization name")
+	
 	@Test(groups = "smokeTest")
 	public void createOrganizationTest() throws Throwable
 	{
@@ -46,7 +58,13 @@ public class CreateOrganizationTest extends BaseClass{
 
 	}
 	
-	@Test(groups = "regressionTest" )
+	@Epic("VT_01 Organization module for industry drop down")
+	@Story("create a oragnization with industry dropdown")
+	@Severity(SeverityLevel.MINOR)
+	@Description("create a oragnization with industry dropdown and verify industry")
+	
+	
+	@Test(groups = "regressionTest")
 	public void createOrgWithIndustryTest() throws Throwable
 	{
 		String orgName=eUtil.getExcelData("org", 4, 2)+"_"+JavaUtility.getRandomData();

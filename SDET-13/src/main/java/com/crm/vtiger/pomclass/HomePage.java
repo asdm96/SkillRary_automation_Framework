@@ -5,6 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import com.aventstack.extentreports.model.Test;
 import com.crm.vtiger.GenericUtils.WebDriverUtility;
 
 public class HomePage extends WebDriverUtility{
@@ -45,6 +46,7 @@ public class HomePage extends WebDriverUtility{
 	 * click on organization link
 	 */
 	public OrganizationPage clickOnOrganizationLink() {
+		
 		organizationLink.click();
 		return new OrganizationPage(driver);
 	}

@@ -25,6 +25,7 @@ public class SampleTest {
 	@Test
 	public void createOrgWithIndutries(){
 		System.out.println("execute createOrgWithIndutries test");
+	new MyChromeDriver().manage().window().maximize();
 	}
 	
 	@AfterMethod

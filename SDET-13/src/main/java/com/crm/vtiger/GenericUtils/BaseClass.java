@@ -24,6 +24,7 @@ import com.crm.vtiger.pomclass.LoginPage;
 
 public class BaseClass {
 	public WebDriver driver;
+	public static WebDriver staticDriver;
 	public ExcelUtility eUtil=new ExcelUtility();
 	public FileUtility fUtil=new FileUtility();
 	public WebDriverUtility wUtil=new WebDriverUtility();
@@ -56,6 +57,7 @@ public class BaseClass {
 		else if(browserName.equalsIgnoreCase("IE")) {
 			driver=new InternetExplorerDriver();
 		}
+		staticDriver=driver;
 		driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().window().maximize();
 	}

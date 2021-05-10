@@ -184,11 +184,13 @@ public class WebDriverUtility {
     	driver.switchTo().frame(idOrName);
     } 
 
-    public void takeScreenshot(WebDriver driver, String screenshotName) throws Throwable {
+    public String takeScreenshot(WebDriver driver, String screenshotName) throws Throwable {
+    	String screenshotPath="./screenshot/"+screenshotName+JavaUtility.getCurrentSystemDate()+".PNG";
     	TakesScreenshot ts=(TakesScreenshot)driver;
     	File src=ts.getScreenshotAs(OutputType.FILE);
-    	File dest=new File("./screenshot/"+screenshotName+".PNG");
+    	File dest=new File(screenshotPath);
     	Files.copy(src, dest);
+    	return screenshotPath;
     }
     
     public void pressEnterKey() throws Throwable {

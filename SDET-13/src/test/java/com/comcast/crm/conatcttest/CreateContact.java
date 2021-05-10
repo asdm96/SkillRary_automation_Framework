@@ -1,6 +1,7 @@
 package com.comcast.crm.conatcttest;
 
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.crm.vtiger.GenericUtils.BaseClass;
@@ -13,10 +14,21 @@ import com.crm.vtiger.pomclass.HomePage;
 import com.crm.vtiger.pomclass.OragnizationInformationPage;
 import com.crm.vtiger.pomclass.OrganizationPage;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 
 
+@Listeners(com.crm.vtiger.GenericUtils.ListenerIMP.class)
 public class CreateContact extends BaseClass{
 
+	@Epic("VT_02 Conatact module")
+	@Story("Create a contact with mandatory filed")
+	@Severity(SeverityLevel.CRITICAL)
+	@Description("Create a contact with madatory field and verify")
+	
 	@Test(groups = "smokeTest")  
 	public void createContact() throws Throwable
 	{
@@ -40,6 +52,10 @@ public class CreateContact extends BaseClass{
 	}
 
 	
+	@Epic("VT_02 Conatact module for oranization")
+	@Story("Create a contact with Organization")
+	@Severity(SeverityLevel.MINOR)
+	@Description("Create a contact with organization and verify the contact and organization")
 	
 	@Test(groups = "regressionTest")
 	public void createContactWithOrg() throws Throwable

@@ -1,3 +1,88 @@
+
+=============Extent report configuration=============================
+Dependency:
+<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
+<dependency>
+    <groupId>com.aventstack</groupId>
+    <artifactId>extentreports</artifactId>
+    <version>5.0.1</version>
+</dependency>
+
+====================================================
+Listener implementation class configuration
+ExtentReports reports;
+	ExtentTest test;
+	 @Override		
+	    public void onFinish(ITestContext arg0) {					
+	       //After Suite			
+	        reports.flush();		
+	    }		
+
+	    @Override		
+	    public void onStart(ITestContext arg0) {					
+	        // BeforeSuite
+	    	
+	    	ExtentSparkReporter htmlReporter=new ExtentSparkReporter(IPathConstant.htmlPath);
+	    	htmlReporter.config().setDocumentTitle("VTiger Application");
+	    	htmlReporter.config().setReportName("RegressionTest");
+	    	htmlReporter.config().setTheme(Theme.DARK);
+	    	reports=new ExtentReports();
+	    	reports.attachReporter(htmlReporter);
+	    	reports.setSystemInfo("OS", "Windows 10");
+	    	reports.setSystemInfo("Platform", "Windows");
+	    	reports.setSystemInfo("Reporter Name", "Nithesh H S");
+	        		
+	    }		
+
+	    @Override		
+	    public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {					
+	        // TODO Auto-generated method stub				
+	        		
+	    }		
+
+	    @Override		
+	    public void onTestFailure(ITestResult result) {					
+	        test.log(Status.FAIL, result.getMethod().getMethodName()+" is Failed");
+	        test.log(Status.FAIL, result.getThrowable());
+	        String path=null;
+	        try {
+				path=wUtil.takeScreenshot(BaseClass.staticDriver, result.getMethod().getMethodName());
+			} catch (Throwable e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	        test.addScreenCaptureFromPath(path);	
+	    }		
+
+	    @Override		
+	    public void onTestSkipped(ITestResult result) {					
+	        test.log(Status.SKIP, result.getMethod().getMethodName()+" is Skipped");
+	        test.log(Status.SKIP, result.getThrowable());
+	        		
+	    }		
+
+	    @Override		
+	    public void onTestStart(ITestResult result) {	
+	    	//@test method
+	    	 test=reports.createTest(result.getMethod().getMethodName());
+	        		
+	    }		
+
+	    @Override		
+	    public void onTestSuccess(ITestResult result) {					
+	        				
+	        test.log(Status.PASS, result.getMethod().getMethodName()+" is passed");		
+	    }		
+
+
+
+=============================================Allure Report===============================================
+https://repo.maven.apache.org/maven2/io/qameta/allure/allure-commandline/2.13.0/
+
+extract zip file-> D:\allure-2.13.8\bin set this path in environment variable
+
+=========================================
+POM file configuration
 <?xml version="1.0" encoding="UTF-8"?>
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -154,3 +239,27 @@
 		</pluginManagement>
 	</build>
 </project>
+=============================================================================
+In testcript above @Test we have to specify this annotations
+
+@Epic("Epic")
+@Story("User Story")
+@Sevirity(SevrityLevel.MINOR)
+@Description("Testcase Name")
+=======================================
+For taking screenshot
+@Attachment
+	public byte[] saveFailureScreenshot(WebDriver driver) {
+		return ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+	}
+public void onTestFailure(ItestResult arg0){
+saveFailureScreenshot(BaseClass.staticDriver);
+}
+
+==============================================================================
+After executing it generate allure-reports folder in project directory
+===============================
+open cmd> allure serve <allure-report path>
+=================================
+
+

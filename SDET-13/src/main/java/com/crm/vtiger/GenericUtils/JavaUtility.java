@@ -26,13 +26,14 @@ public class JavaUtility {
 	 * Generate current system date
 	 * @author Chaitra
 	 */
-	public String getCurrentSystemDate()
+	public static String getCurrentSystemDate()
 	{
 		Date date = new Date();
 		String currentDate=date.toString();
-		return currentDate;
+		return currentDate.replace(" ", "_").replace(":", "_");
 		
 	}
+	
 	
 
 }
