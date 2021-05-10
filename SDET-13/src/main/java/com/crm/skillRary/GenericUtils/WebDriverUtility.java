@@ -1,4 +1,4 @@
-package com.crm.vtiger.GenericUtils;
+package com.crm.skillRary.GenericUtils;
 
 import java.awt.AWTException;
 import java.awt.Robot;

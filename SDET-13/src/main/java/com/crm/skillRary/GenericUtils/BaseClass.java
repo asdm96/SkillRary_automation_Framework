@@ -1,11 +1,9 @@
-package com.crm.vtiger.GenericUtils;
+package com.crm.skillRary.GenericUtils;
 
-import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
-import org.openqa.selenium.By;
+
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -17,10 +15,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Parameters;
 
-import com.crm.vtiger.pomclass.HomePage;
-import com.crm.vtiger.pomclass.LoginPage;
 
 public class BaseClass {
 	public WebDriver driver;
@@ -29,7 +24,7 @@ public class BaseClass {
 	public FileUtility fUtil=new FileUtility();
 	public WebDriverUtility wUtil=new WebDriverUtility();
 	public DataBaseUtilities dblib = new DataBaseUtilities();
-	public HomePage homePAge;
+
 	
 	@BeforeSuite(groups = {"smokeTest" , "regressionTest"})
 	public void configBS() throws Throwable {
@@ -65,13 +60,7 @@ public class BaseClass {
 	
 	@BeforeMethod(groups = {"smokeTest" , "regressionTest"})
 	public void configBM() throws Throwable {
-		String url=fUtil.getPropertyKeyValue("url");
-		String username=fUtil.getPropertyKeyValue("username");
-		String password=fUtil.getPropertyKeyValue("password");
-		driver.get(url);
 		//login to the application
-		LoginPage loginPage=new LoginPage(driver);
-		homePAge = loginPage.login(username, password);
 		
 	}
 	
@@ -79,8 +68,7 @@ public class BaseClass {
 	
 	@AfterMethod(groups = {"smokeTest" , "regressionTest"})
 	public void configAM() throws Throwable {
-		HomePage  homePage = new HomePage(driver);
-		homePage.signOut();
+		
 		
 	}
 	
@@ -93,7 +81,7 @@ public class BaseClass {
 	
 	@AfterTest(groups = {"smokeTest" , "regressionTest"})
 	public void configAT() {
-		//close driver ref in parallel mode
+		//close driver reference in parallel mode
 	}
 	
 	@AfterSuite(groups = {"smokeTest" , "regressionTest"})

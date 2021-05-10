@@ -1,4 +1,4 @@
-package com.crm.vtiger.GenericUtils;
+package com.crm.skillRary.GenericUtils;
 
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;

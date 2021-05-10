@@ -1,4 +1,4 @@
-package com.crm.vtiger.GenericUtils;
+package com.crm.skillRary.GenericUtils;
 
 import java.util.Date;
 import java.util.Random;

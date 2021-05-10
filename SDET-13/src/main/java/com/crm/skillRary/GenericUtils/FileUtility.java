@@ -1,4 +1,4 @@
-package com.crm.vtiger.GenericUtils;
+package com.crm.skillRary.GenericUtils;
 
 import java.io.FileInputStream;
 import java.io.FileReader;
